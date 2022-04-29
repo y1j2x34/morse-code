@@ -10,14 +10,36 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:morse-code.helloWorld"
+        "onCommand:morse-code.enableMorseCode"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "morse-code.helloWorld",
-				"title": "Hello World"
+				"command": "morse-code.enableMorseCode",
+				"title": "Enable morse code",
+				"when": "!config.morsecode.enabled",
+				"enablement": "!config.morsecode.enabled"
+			},
+			{
+				"command": "morse-code.disableMorseCode",
+				"title": "Disable morse code",
+				"when": "config.morsecode.enabled",
+				"enablement": "config.morsecode.enabled"
+			}
+		],
+		"configuration": [
+			{
+				"title": "Morse code",
+				"order": 0,
+				"properties": {
+					"morsecode.enabled": {
+						"order": 0,
+						"default": false,
+						"type": "boolean",
+						"description": "Enable to activate MORSE CODE!"
+					}
+				}
 			}
 		]
 	},
